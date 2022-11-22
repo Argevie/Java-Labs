@@ -17,20 +17,29 @@ public class Date {
     }
     public static int setDate() {
         Scanner input = new Scanner(System.in);   //ввести год
-        System.out.print("Введите год: ");
-        int y = input.nextInt();
-        int countY = 0;                      //Подсчёт високосных лет
-        for (int i = 0; i < y; i++) {
-            if (i % 4 != 0) {
-                countY += 0;
-            } else if (i % 400 == 0) {
-                countY++;
-            } else if (i % 100 == 0) {
-                countY += 0;
-            } else {
-                countY++;
+        boolean errory = false;
+        int y,countY;
+        do {
+            errory = false;
+            System.out.print("Введите год: ");
+            y = input.nextInt();
+            countY = 0;                      //Подсчёт високосных лет
+            for (int i = 0; i < y; i++) {
+                if (i % 4 != 0) {
+                    countY += 0;
+                } else if (i % 400 == 0) {
+                    countY++;
+                } else if (i % 100 == 0) {
+                    countY += 0;
+                } else {
+                    countY++;
+                }
             }
-        }
+            if (y<0) {
+                System.out.println("error");
+                 errory = true;                           //вадидация введенного года
+            }
+        } while (errory == true);
 
         boolean error = false;           //проверка на ошибку
         int dayPass = 0;                 //сколько дней прошло от начала года
@@ -113,6 +122,7 @@ public class Date {
         do {
             System.out.print("Введите день: ");         //ввод дня
             d = input.nextInt();
+            errord = false;
             if (d<1||d>dayinM){
                 errord = true;
                 System.out.println("error");
